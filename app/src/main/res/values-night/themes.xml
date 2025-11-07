@@ -1,7 +1,12 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.MyApplication" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+<resources>
+
+    <!-- Theme mặc định -->
+    <style name="Theme.MyApplication" parent="Theme.Material3.DayNight" />
+
+    <!-- Theme ẩn ActionBar -->
+    <style name="Theme.MyApplication.NoActionBar" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
     </style>
+
 </resources>
