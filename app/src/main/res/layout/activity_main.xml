@@ -1,91 +1,213 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- 1. BỌC MỌI THỨ TRONG NESTEDSCROLLVIEW -->
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#b9d8e9"
+    android:fillViewport="true"
     tools:context=".MainActivity">
 
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="222dp"
-        android:layout_height="222dp"
-
-        android:layout_marginTop="52dp"
-        android:contentDescription="Avatar của Duy Hoàng"
-        android:scaleType="centerInside"
-
-        android:src="@drawable/avata"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed" />
-
-    <TextView
-        android:id="@+id/textTitle"
-        android:layout_width="0dp"
+    <!-- 2. CONSTRAINTLAYOUT CỦA BẠN NẰM BÊN TRONG -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="4dp"
-        android:text="Chào bạn! Mình là Duy Hoàng "
-        android:textAlignment="center"
-        android:textColor="@android:color/black"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/textDescription"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageView" />
+    android:background="#E3F2FD"
+    android:paddingBottom="24dp"> <!-- Thêm padding dưới cho thoáng -->
 
-    <TextView
-        android:id="@+id/textDescription"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif"
-        android:text="Chào mừng bạn đến với portfolio cá nhân của tôi. Cùng khám phá nhé!"
-        android:textAlignment="center"
-        android:textColor="@android:color/darker_gray"
-        android:textSize="16sp"
-        android:layout_marginTop="16dp"
+    <!-- AVATAR BO TRÒN -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/profile_avatar_card"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="48dp"
+        app:cardCornerRadius="75dp"
+        app:cardElevation="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textTitle" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/buttonStart"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Khám phá ngay"
-        android:textAlignment="center"
-        android:textAllCaps="true"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:paddingTop="12dp"
-        android:paddingBottom="12dp"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="#3aadb7"
-        app:layout_constraintBottom_toTopOf="@id/textSkip"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        <ImageView
+            android:id="@+id/profile_avatar_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/avata"
+            android:contentDescription="Avatar của Duy Hoàng" />
 
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- TÊN CỦA BẠN -->
     <TextView
-        android:id="@+id/textSkip"
+        android:id="@+id/profile_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="52dp"
-        android:padding="8dp"
-        android:text="Để sau"
-        android:textAlignment="center"
-        android:textAllCaps="false"
+        android:layout_marginTop="16dp"
+        android:text="Duy Hoàng"
+        android:textColor="@android:color/black"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/profile_avatar_card"
+        app:layout_constraintStart_toStartOf="@id/profile_avatar_card"
+        app:layout_constraintTop_toBottomOf="@id/profile_avatar_card" />
+
+    <!-- TAGLINE (GIỚI THIỆU NGẮN) -->
+    <TextView
+        android:id="@+id/profile_tagline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Sinh viên năm 3 ngành An toàn thông tin"
         android:textColor="@android:color/darker_gray"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profile_name" />
+
+    <!-- THẺ KỸ NĂNG -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/skills_card"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profile_tagline">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Kỹ năng nổi bật"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:chipSpacing="8dp">
+                <!--                app:alignmentMode="center">-->
+
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Android"
+                    app:chipIcon="@android:drawable/ic_menu_compass" />
+
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cybersecurity"
+                    app:chipIcon="@android:drawable/ic_lock_lock" />
+
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Malware Analyst" />
+
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Reverse Engineering" />
+
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Forensic" />
+
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CTF" />
+
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Networking" />
+
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TOEIC 650+(in my dream)"
+                    app:chipIcon="@android:drawable/ic_menu_edit" />
+
+            </com.google.android.material.chip.ChipGroup>
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- NÚT CTA (CALL TO ACTION) CHÍNH -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/projects_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="24dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:text="Xem dự án của tôi"
+        android:backgroundTint="#3aadb7"
+        app:icon="@android:drawable/ic_menu_agenda"
+        app:iconGravity="textStart"
+        app:layout_constraintTop_toBottomOf="@id/skills_card"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <!-- THANH LIÊN KẾT XÃ HỘI (SOCIALS) -->
+    <LinearLayout
+        android:id="@+id/social_links_bar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/projects_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageButton
+            android:id="@+id/btn_github"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="24dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@android:drawable/ic_menu_share"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <ImageButton
+            android:id="@+id/btn_linkedin"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="24dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@android:drawable/ic_menu_info_details"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <ImageButton
+            android:id="@+id/btn_email"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@android:drawable/ic_dialog_email"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
